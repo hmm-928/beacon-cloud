@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mashibing.webmaster.mapper.SmsRoleMapper">
+  <resultMap id="BaseResultMap" type="com.mashibing.webmaster.entity.SmsRole">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="extend1" jdbcType="VARCHAR" property="extend1" />
+    <result column="extend2" jdbcType="VARCHAR" property="extend2" />
+    <result column="extend3" jdbcType="VARCHAR" property="extend3" />
+    <result column="extend4" jdbcType="VARCHAR" property="extend4" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, created, create_id, updated, update_id, is_delete, extend1, extend2, extend3, 
+    extend4
+  </sql>
+  <select id="selectByExample" parameterType="com.mashibing.webmaster.entity.SmsRoleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sms_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sms_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sms_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mashibing.webmaster.entity.SmsRoleExample">
+    delete from sms_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mashibing.webmaster.entity.SmsRole">
+    insert into sms_role (id, name, created, 
+      create_id, updated, update_id, 
+      is_delete, extend1, extend2, 
+      extend3, extend4)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=BIGINT}, #{updated,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}, 
+      #{isDelete,jdbcType=TINYINT}, #{extend1,jdbcType=VARCHAR}, #{extend2,jdbcType=VARCHAR}, 
+      #{extend3,jdbcType=VARCHAR}, #{extend4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mashibing.webmaster.entity.SmsRole">
+    insert into sms_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="updated != null">
+        updated,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="extend1 != null">
+        extend1,
+      </if>
+      <if test="extend2 != null">
+        extend2,
+      </if>
+      <if test="extend3 != null">
+        extend3,
+      </if>
+      <if test="extend4 != null">
+        extend4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="extend1 != null">
+        #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null">
+        #{extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="extend3 != null">
+        #{extend3,jdbcType=VARCHAR},
+      </if>
+      <if test="extend4 != null">
+        #{extend4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mashibing.webmaster.entity.SmsRoleExample" resultType="java.lang.Long">
+    select count(*) from sms_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sms_role
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=INTEGER},
+      </if>
+      <if test="row.name != null">
+        name = #{row.name,jdbcType=VARCHAR},
+      </if>
+      <if test="row.created != null">
+        created = #{row.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.createId != null">
+        create_id = #{row.createId,jdbcType=BIGINT},
+      </if>
+      <if test="row.updated != null">
+        updated = #{row.updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.updateId != null">
+        update_id = #{row.updateId,jdbcType=BIGINT},
+      </if>
+      <if test="row.isDelete != null">
+        is_delete = #{row.isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="row.extend1 != null">
+        extend1 = #{row.extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="row.extend2 != null">
+        extend2 = #{row.extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="row.extend3 != null">
+        extend3 = #{row.extend3,jdbcType=VARCHAR},
+      </if>
+      <if test="row.extend4 != null">
+        extend4 = #{row.extend4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sms_role
+    set id = #{row.id,jdbcType=INTEGER},
+      name = #{row.name,jdbcType=VARCHAR},
+      created = #{row.created,jdbcType=TIMESTAMP},
+      create_id = #{row.createId,jdbcType=BIGINT},
+      updated = #{row.updated,jdbcType=TIMESTAMP},
+      update_id = #{row.updateId,jdbcType=BIGINT},
+      is_delete = #{row.isDelete,jdbcType=TINYINT},
+      extend1 = #{row.extend1,jdbcType=VARCHAR},
+      extend2 = #{row.extend2,jdbcType=VARCHAR},
+      extend3 = #{row.extend3,jdbcType=VARCHAR},
+      extend4 = #{row.extend4,jdbcType=VARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mashibing.webmaster.entity.SmsRole">
+    update sms_role
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="updated != null">
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="extend1 != null">
+        extend1 = #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null">
+        extend2 = #{extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="extend3 != null">
+        extend3 = #{extend3,jdbcType=VARCHAR},
+      </if>
+      <if test="extend4 != null">
+        extend4 = #{extend4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mashibing.webmaster.entity.SmsRole">
+    update sms_role
+    set name = #{name,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=BIGINT},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      extend1 = #{extend1,jdbcType=VARCHAR},
+      extend2 = #{extend2,jdbcType=VARCHAR},
+      extend3 = #{extend3,jdbcType=VARCHAR},
+      extend4 = #{extend4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

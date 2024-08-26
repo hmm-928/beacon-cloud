@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+<!--    所有信息都在context里，id是唯一标识，targetRuntime在Mybatis3的环境-->
+    <context id="beaconCloud" targetRuntime="MyBatis3">
+<!--        去除注释-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://114.116.226.76:3306/beacon_cloud?characterEncoding=utf-8"
+                        userId="root"
+                        password="ZhengJinWei123!">
+        </jdbcConnection>
+
+
+
+        <javaTypeResolver >
+<!--            是否将decimal类型转换为Java中的BigDecimal，默认false-->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+<!--        将表对应的实体类生成，指定好位置-->
+        <javaModelGenerator targetPackage="com.mashibing.webmaster.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+<!--            字符串get时，去掉两边空格-->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+<!--        生成xml文件-->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--        生成Mapper接口-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mashibing.webmaster.mapper"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+<!--        生成那些表对应的信息-->
+<!--        <table tableName="sms_user" domainObjectName="SmsUser" />-->
+<!--        <table tableName="sms_role" domainObjectName="SmsRole" />-->
+<!--        <table tableName="sms_menu" domainObjectName="SmsMenu" />-->
+        <table tableName="client_business" domainObjectName="ClientBusiness" />
+
+    </context>
+</generatorConfiguration>
